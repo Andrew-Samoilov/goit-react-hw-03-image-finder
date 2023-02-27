@@ -76,7 +76,7 @@ img {
     width: 48px;
     height: 48px;
     border: 0;
-    background-image: url('https: //www.flaticon.com/ru/free-icon/search_149852?k=1677490216929&sign-up=google');
+    /* background-image: url('https: //www.flaticon.com/ru/free-icon/search_149852?k=1677490216929&sign-up=google'); */
     background-size: 40%;
     background-repeat: no-repeat;
     background-position: center;
@@ -86,7 +86,7 @@ img {
     outline: none;
 }
 
-.SearchForm-button:hover {
+.SearchFormButton:hover {
     opacity: 1;
 }
 
@@ -113,7 +113,7 @@ img {
     padding-right: 4px;
 }
 
-.SearchForm-input::placeholder {
+.SearchFormInput::placeholder {
     font: inherit;
     font-size: 18px;
 }
@@ -143,14 +143,14 @@ img {
         0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
-.ImageGalleryItem-image {
+.ImageGalleryItemImage {
     width: 100%;
     height: 260px;
     object-fit: cover;
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.ImageGalleryItem-image:hover {
+.ImageGalleryItemImage:hover {
     transform: scale(1.03);
     cursor: zoom-in;
 }

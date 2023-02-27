@@ -4,15 +4,16 @@ export const Searchbar = (onSubmit) => {
     return (
         <header className={css.Searchbar}>
             <form className={css.SearchForm} onSubmit={onSubmit}>
-                <button type="submit" className={css.SearchFormButton}>
+                <button type="submit"
+                    className={css.SearchFormButton}>
                     <span className={css.SearchFormButtonLabel}>Search</span>
                 </button>
 
                 <input
                     className={css.SearchFormInput}
                     type="text"
-                    autocomplete="off"
-                    autofocus
+                    autoComplete="off"
+                    autoFocus
                     placeholder="Search images and photos"
                 />
             </form>
