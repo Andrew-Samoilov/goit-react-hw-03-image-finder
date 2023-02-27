@@ -12,9 +12,15 @@ export default class Searchbar extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
+
+        if (this.state.inputSearch.trim()==='') {
+            console.log(`No input, nothing search`);
+            return;
+        }
+
         this.props.onSubmit(this.state.inputSearch);
-        this.setState({ inputSearch: '' });
         // console.log(this.state);
+        this.setState({ inputSearch: '' });
     };
 
     render() {

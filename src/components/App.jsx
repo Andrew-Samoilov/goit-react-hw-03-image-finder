@@ -1,7 +1,7 @@
 import { Component } from "react";
 import css from "./styles.module.css";
 import Searchbar from "./Searchbar";
-import { ImageGallery } from "./ImageGallery";
+import ImageGallery from "./ImageGallery";
 import { Button } from "./Button";
 
 export default class App extends Component {
@@ -10,7 +10,7 @@ export default class App extends Component {
   }
 
   formSubmitHandler = data => {
-    console.log(data);
+    // console.log(data);
     this.setState(() => ({
       inputSearch: data,
     }));
