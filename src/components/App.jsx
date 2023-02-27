@@ -1,20 +1,34 @@
+import { Component } from "react";
 import css from "./styles.module.css";
-import { Searchbar } from "./Searchbar";
+import Searchbar from "./Searchbar";
 import { ImageGallery } from "./ImageGallery";
 import { Button } from "./Button";
 
-export const App = () => {
+export default class App extends Component {
+  state = {
+    inputSearch: '',
+  }
+
+  formSubmitHandler = data => {
+    console.log(data);
+    this.setState(() => ({
+      inputSearch: data,
+    }));
+  }
+
+  render() {
     return (
       <div className={css.App}>
-        <Searchbar onSubmit="" />  
+        <Searchbar onSubmit={this.formSubmitHandler} />
         {/* <body> */}
-          <ImageGallery />
+        <ImageGallery />
         {/* </body> */}
         <footer>
           {/* <Loader> */}
           <Button />
           {/* <Modal> */}
-        </footer>  
-      </div>  
+        </footer>
+      </div>
     );
+  } 
 };
