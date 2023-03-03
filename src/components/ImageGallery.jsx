@@ -8,18 +8,17 @@ export default class ImageGallery extends Component {
     state = {
         images: [],
         error: '',
-       
+
     }
 
     componentDidUpdate(prevProps, prevState) {
-        // console.log(` start CDU inputSearch`, prevProps.inputSearch);
-        // console.log(this.props.inputSearch);
-        if (
-            prevProps.inputSearch !== this.props.inputSearch ||
-            prevProps.pageLoaded !== this.props.pageLoaded
-        ) {
+        console.log(this.props.inputSearch, this.props.pageLoaded);
+
+        if (prevProps.inputSearch !== this.props.inputSearch) {
+            this.setState({ images: [] });
             console.log(`Changed inputSearch ${this.props.inputSearch}`);
-            this.setState({images: []});
+        }
+        if (prevProps.pageLoaded !== this.props.pageLoaded) {
             getImage(this.props.inputSearch, this.props.pageLoaded)
                 .then((response) => response.json())
                 .then((images) => {

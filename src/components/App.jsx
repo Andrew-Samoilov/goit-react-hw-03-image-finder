@@ -11,14 +11,14 @@ export default class App extends Component {
   }
 
   formSubmitHandler = data => {
-    // console.log(data);
+    console.log(data);
     this.setState(() => ({
       inputSearch: data,
     }));
   }
 
   handleLoad = () => {
-    console.log(this.state.page)
+    // console.log(this.state.page)
     this.setState((prev) => ({ page: prev.page + 1 }))
     console.log(this.state.page)
   }
@@ -26,7 +26,7 @@ export default class App extends Component {
   render() {
     return (
       <div className={css.App}>
-        <Searchbar onSubmit={this.formSubmitHandler} />
+        <Searchbar onSubmit={this.formSubmitHandler} page={this.handleLoad} />
         <ImageGallery
           inputSearch={this.state.inputSearch}
           pageLoaded={this.state.page} />
