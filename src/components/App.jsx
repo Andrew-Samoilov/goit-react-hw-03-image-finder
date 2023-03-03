@@ -21,7 +21,7 @@ export default class App extends Component {
       <div className={css.App}>
         <Searchbar onSubmit={this.formSubmitHandler} />
         {/* <body> */}
-        <ImageGallery />
+        <ImageGallery inputSearch={this.state.inputSearch} />
         {/* </body> */}
         <footer>
           {/* <Loader> */}

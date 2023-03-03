@@ -39,7 +39,7 @@ export default class Searchbar extends Component {
                         name="inputSearch"
                         autoFocus
                         onChange={this.handleChange}
-                        value={this.state.number}
+                        value={this.state.inputSearch}
                         placeholder="Search images and photos"
                     />
                 </form>
