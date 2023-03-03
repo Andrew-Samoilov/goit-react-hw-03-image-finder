@@ -76,7 +76,7 @@ img {
     width: 48px;
     height: 48px;
     border: 0;
-    /* background-image: url('https: //www.flaticon.com/ru/free-icon/search_149852?k=1677490216929&sign-up=google'); */
+    background-image: url('./searchIcon.png');
     background-size: 40%;
     background-repeat: no-repeat;
     background-position: center;

@@ -11,7 +11,7 @@ export default class App extends Component {
   }
 
   formSubmitHandler = data => {
-    console.log(data);
+    // console.log(data);
     this.setState(() => ({
       inputSearch: data,
     }));
@@ -20,7 +20,6 @@ export default class App extends Component {
   handleLoad = () => {
     // console.log(this.state.page)
     this.setState((prev) => ({ page: prev.page + 1 }))
-    console.log(this.state.page)
   }
 
   render() {
