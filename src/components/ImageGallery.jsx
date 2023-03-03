@@ -17,9 +17,10 @@ export default class ImageGallery extends Component {
         if (prevProps.inputSearch !== this.props.inputSearch) {
             this.setState({ images: [] });
             this.setState({ page: 1 });
+        
             // console.log(`Changed inputSearch ${this.props.inputSearch}`);
 
-            getImage(this.props.inputSearch, this.state.page)
+            getImage(this.props.inputSearch, 1)
                 .then((response) => response.json())
                 .then((images) => {
                     // console.log(images);
@@ -51,12 +52,19 @@ export default class ImageGallery extends Component {
         }
     }
 
+    onTheClick = event => {
+        // console.log(event);
+        if (event.currentTarget === event.target) {
+            this.props.onClick(event);
+        }
+    };
+
     render() {
         const { images } = this.state;
 
         return (
             <ul className={css.ImageGallery}>
-                <ImageGalleryItem images={images} />
+                <ImageGalleryItem images={images} onClick={this.onTheClick} />
             </ul>
         );
 

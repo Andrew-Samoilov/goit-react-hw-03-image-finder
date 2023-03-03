@@ -20,6 +20,11 @@ export default class Searchbar extends Component {
             return;
         }
 
+        // if (this.state.inputSearch === this.props.onSubmit) {
+        //     console.log(`Same qerries`);
+        //     return;
+        // }
+
         this.props.onSubmit(this.state.inputSearch);
         this.props.page(this.state.page);
         // console.log(this.state);
