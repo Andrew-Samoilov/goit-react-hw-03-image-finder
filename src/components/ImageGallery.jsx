@@ -8,7 +8,7 @@ export default class ImageGallery extends Component {
     state = {
         images: [],
         error: '',
-        page: 1,
+       
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -16,10 +16,11 @@ export default class ImageGallery extends Component {
         // console.log(this.props.inputSearch);
         if (
             prevProps.inputSearch !== this.props.inputSearch ||
-            prevState.page !== this.state.page
+            prevProps.pageLoaded !== this.props.pageLoaded
         ) {
             console.log(`Changed inputSearch ${this.props.inputSearch}`);
-            getImage(this.props.inputSearch, 1)
+            this.setState({images: []});
+            getImage(this.props.inputSearch, this.props.pageLoaded)
                 .then((response) => response.json())
                 .then((images) => {
                     console.log(images);
@@ -33,11 +34,6 @@ export default class ImageGallery extends Component {
                     this.setState({ error });
                 })
         }
-        // console.log(` end CDU`);
-    }
-
-    handleLoad = () => {
-        this.setState((prev) => ({ page: prev.page + 1 }))
     }
 
     render() {
