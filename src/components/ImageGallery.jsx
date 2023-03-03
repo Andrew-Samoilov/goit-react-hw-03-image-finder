@@ -12,9 +12,10 @@ export default class ImageGallery extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-
+        // console.log(` start CDU inputSearch`, prevProps.inputSearch);
+        // console.log(this.props.inputSearch);
         if (
-            prevProps.value !== this.props.value ||
+            prevProps.inputSearch !== this.props.inputSearch ||
             prevState.page !== this.state.page
         ) {
             console.log(`Changed inputSearch ${this.props.inputSearch}`);
@@ -24,7 +25,7 @@ export default class ImageGallery extends Component {
                     console.log(images);
 
                     this.setState({
-                        images: [...this.state.images, ...images.images],
+                        images: [...this.state.images, ...images.hits],
                     })
                 })
                 .catch((error) => {
@@ -32,6 +33,7 @@ export default class ImageGallery extends Component {
                     this.setState({ error });
                 })
         }
+        // console.log(` end CDU`);
     }
 
     handleLoad = () => {
@@ -43,7 +45,6 @@ export default class ImageGallery extends Component {
 
         return (
             <ul className={css.ImageGallery}>
-                Image Gallery
                 <ImageGalleryItem images={images} />
             </ul>
         );
