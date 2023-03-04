@@ -14,7 +14,7 @@ export default class Searchbar extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-
+  
         if (this.state.inputSearch.trim() === '') {
             console.log(`No input, nothing search`);
             return;
@@ -34,6 +34,7 @@ export default class Searchbar extends Component {
     render() {
         return (
             <header className={css.Searchbar}>
+        
                 <form className={css.SearchForm}
                     onSubmit={this.handleSubmit}>                  
                     <button type="submit"

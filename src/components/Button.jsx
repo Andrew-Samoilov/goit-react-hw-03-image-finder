@@ -7,8 +7,8 @@ export default class Button extends Component {
     }
 
     onLoadMore = () => {
-        console.log(`onLoadMore`);
-        this.setState({page: this.state.page + 1 })
+        // console.log(`onLoadMore`);
+        // this.setState({page: this.state.page + 1 })
         this.props.onLoadMore(this.state.page);
     };
 

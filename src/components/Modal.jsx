@@ -33,7 +33,7 @@ export default class ToDoModal extends Component {
         return createPortal(
             <div className={css.Overlay} onClick={this.handleBackdropClick}>
                 <div className={css.Modal}>
-                    {console.log(this.props)}
+                    {/* {console.log(this.props)} */}
                     {this.props.children}
                 </div>
             </div>,

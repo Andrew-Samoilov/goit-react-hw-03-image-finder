@@ -1,23 +1,27 @@
 import { Component } from "react";
 import css from "./styles.module.css";
+import ErrorPage from './ErrorPage'
 import { getImage } from "../services/getImage";
-
+import { Loader } from "./Loader";
 import { ImageGalleryItem } from "./ImageGalleryItem";
 
 export default class ImageGallery extends Component {
     state = {
-        images: [],
+        images: null,
         error: '',
         page: 1,
+        id: 0,
+        status: 'idle',
     }
 
     componentDidUpdate(prevProps, prevState) {
         // console.log(this.props.inputSearch, this.props.pageLoaded);
 
         if (prevProps.inputSearch !== this.props.inputSearch) {
+            this.setState({ status: 'pending' })
             this.setState({ images: [] });
             this.setState({ page: 1 });
-        
+          
             // console.log(`Changed inputSearch ${this.props.inputSearch}`);
 
             getImage(this.props.inputSearch, 1)
@@ -36,6 +40,7 @@ export default class ImageGallery extends Component {
         }
 
         if (prevProps.pageLoaded !== this.props.pageLoaded) {
+            this.setState({ status: 'pending' })
             getImage(this.props.inputSearch, this.props.pageLoaded)
                 .then((response) => response.json())
                 .then((images) => {
@@ -43,30 +48,36 @@ export default class ImageGallery extends Component {
 
                     this.setState({
                         images: [...this.state.images, ...images.hits],
+                        status: 'resolved',
                     })
                 })
                 .catch((error) => {
                     console.log('error :>> ', error);
-                    this.setState({ error });
+                    this.setState({ error, status: 'rejected'});
                 })
         }
     }
 
-    onTheClick = event => {
-        // console.log(event);
-        if (event.currentTarget === event.target) {
-            this.props.onClick(event);
-        }
-    };
+    handleClick = (id, largeImageURL, tags) => {
+        // console.log(id, largeImageURL, tags);
+        this.props.onClick(id, largeImageURL, tags);
+    }
 
     render() {
-        const { images } = this.state;
+        const { images, status, error } = this.state;
 
-        return (
-            <ul className={css.ImageGallery}>
-                <ImageGalleryItem images={images} onClick={this.onTheClick} />
-            </ul>
-        );
+        if (status === 'pending') return <Loader />
+
+        if (status === 'resolved')
+            return this.state.images && (
+                <ul className={css.ImageGallery}>
+                    <ImageGalleryItem
+                        images={images}
+                        onClick={this.handleClick} />
+                </ul>
+            );
+        
+        if (status === 'rejected') return <ErrorPage error={error} />
 
     }
 }

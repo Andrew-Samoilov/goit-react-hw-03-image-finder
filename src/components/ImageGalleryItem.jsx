@@ -2,17 +2,17 @@ import css from "./styles.module.css";
 
 export const ImageGalleryItem = ({ images, onClick }) => {
     // console.log(images);
-    if (images.length!==0) {
-        return (images.map((el) => {
+    // <img src={el.webformatURL} alt={el.tags} className={css.ImageGalleryItemImage} />
+    return (images.map(({ id, webformatURL, tags, largeImageURL }) => {
             return (
-                <li key={el.id}
-                    onClick={onClick(el.id)}
+                <li key={id}
+                    onClick={() => onClick(id, largeImageURL, tags)}
                     className={css.ImageGalleryItem}>
-                        <img src={el.webformatURL} alt={el.tags} className={css.ImageGalleryItemImage} />
+                    <img src={webformatURL}
+                        alt={tags}
+                        className={css.ImageGalleryItemImage} />
                 </li>
             );
         })
         );
-    }
-
 }

@@ -10,9 +10,10 @@ export default class App extends Component {
     inputSearch: '',
     page: 1,
     showModal: false,
-    clickId:1,
+    clickId: 1,
     imgUrl: '',
     imgTag: '',
+    // onLoading: false,
   }
 
   formSubmitHandler = data => {
@@ -29,37 +30,58 @@ export default class App extends Component {
 
   toggleModal = clickId => {
     // console.log(` click ${clickId}`);
-    // this.setState(({ state }) => ({ clickId}));
+    this.setState(() => ({ clickId }));
     this.setState(({ showModal }) => ({
       showModal: !showModal,
     }));
   };
 
-  clickId = clickId => {
-    // console.log(clickId);
-    // this.setState(({ state }) => ({ clickId }));
+  clickId = (id, largeImageURL, tags) => {
+    // console.log(id, largeImageURL, tags);
+    this.setState(() => ({
+      clickId: id,
+      imgUrl: largeImageURL,
+      imgTag: tags,
+    }));
+    this.setState(() => ({ showModal: true }));
+  }
+
+  togleLoading = data => {
+    console.log(`Loading`,data);
+    this.setState({onLoading: data});
   }
 
   render() {
     return (
+      
       <div className={css.App}>
-        <Searchbar onSubmit={this.formSubmitHandler} page={this.handleLoad} />
+        {/* {this.state.onLoading===true && (
+          <Loader />
+        )} */}
+
+        <Searchbar
+          onSubmit={this.formSubmitHandler}
+          page={this.handleLoad}
+          // onLoading={this.onLoading}
+        />   
+
         <ImageGallery
           inputSearch={this.state.inputSearch}
           pageLoaded={this.state.page}
           currentHit={this.state.currentHit}
           onClick={this.clickId}
+          onLoading={this.togleLoading}
         />
         <footer className={css.footer}>
-          {/* <Loader> */}
-          <Button onLoadMore={this.handleLoad} />
+          {!this.state.onLoading && (
+            <Button onLoadMore={this.handleLoad} />
+          )}
+        
         </footer>
         {this.state.showModal && (
           <Modal onClose={this.toggleModal}>
-            <div>Image</div>
-            <h2>Description:</h2>
-            <img src={this.imgUrl} alt={this.imgTag} />
-            <button type="button" onClick={this.toggleModal}>Close</button>
+            <p>{this.state.clickId}</p>
+            <img src={this.state.imgUrl} alt={this.state.imgTag} />
           </Modal>
         )}
       </div>
