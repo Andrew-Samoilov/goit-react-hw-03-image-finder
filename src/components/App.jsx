@@ -2,7 +2,7 @@ import { Component } from "react";
 import css from "./styles.module.css";
 import Searchbar from "./Searchbar";
 import ImageGallery from "./ImageGallery";
-import Button from "./Button";
+// import Button from "./Button";
 import Modal from "./Modal";
 
 export default class App extends Component {
@@ -72,13 +72,11 @@ export default class App extends Component {
           onClick={this.clickId}
           onLoading={this.togleLoading}
         />
-        <footer className={css.footer}>
-     
+        {/* <footer className={css.footer}> 
           {this.state.inputSearch!=='' && (
             <Button onLoadMore={this.handleLoad} />
-          )}
-        
-        </footer>
+          )}   
+        </footer> */}
         {this.state.showModal && (
           <Modal onClose={this.toggleModal}>
             <p>{this.state.clickId}</p>
