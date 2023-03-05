@@ -13,7 +13,7 @@ export default class App extends Component {
     clickId: 1,
     imgUrl: '',
     imgTag: '',
-    // onLoading: false,
+    onLoading: false,
   }
 
   formSubmitHandler = data => {
@@ -73,7 +73,8 @@ export default class App extends Component {
           onLoading={this.togleLoading}
         />
         <footer className={css.footer}>
-          {!this.state.onLoading && (
+     
+          {this.state.inputSearch!=='' && (
             <Button onLoadMore={this.handleLoad} />
           )}
         
